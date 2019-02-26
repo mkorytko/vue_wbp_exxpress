@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    age: 50,
+    age: 55,
     users: [
       { name: "Alex", age: 22 },
       { name: "Maria", age: 30 },

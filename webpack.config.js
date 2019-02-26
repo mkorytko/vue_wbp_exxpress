@@ -1,13 +1,13 @@
 const path = (dir) => require("path").resolve(__dirname, dir);
-const miniCSS = require("mini-css-extract-plugin");
 const HTML = require("html-webpack-plugin");
+const miniCSS = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 
 const baseConfig = {
     entry: "./src/index.js",
     output: {
-        filename: "js/main.js",
+        filename: "js/[hash].js",
         path: path('public'),
     },
     module: {
@@ -19,9 +19,6 @@ const baseConfig = {
             {
                 test: /\.vue/,
                 loader: 'vue-loader',
-                options: {
-                    esModule: false,
-                }
             },
             {
                 test: /.css$/,
@@ -30,6 +27,21 @@ const baseConfig = {
                     miniCSS.loader,
                     {
                         loader: 'css-loader',
+                    },
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    miniCSS.loader,
+                    {
+                        loader: 'css-loader',
+                    }, {
+                          loader: 'postcss-loader',
+                          options: { config: { path: './postcss.config.js' } }
+                    }, {
+                          loader: 'sass-loader',
                     },
                 ]
             },

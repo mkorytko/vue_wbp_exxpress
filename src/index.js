@@ -3,9 +3,8 @@ import "./style/main.css";
 import Vue from "vue";
 import store from "./store";
 import App from "./App.vue";
-import router from "./routes"
+import router from "./routes";
 
-;
 new Vue({
     router,
     store,
