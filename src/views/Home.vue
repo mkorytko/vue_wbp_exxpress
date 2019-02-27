@@ -4,7 +4,7 @@
 <script>
 export default {
   created: function () {
-      console.log(this.$store.state.age)
+      // console.log(this.$store.state.age)
   },
   computed: {
       username () {

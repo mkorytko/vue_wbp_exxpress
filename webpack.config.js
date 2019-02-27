@@ -7,42 +7,38 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const baseConfig = {
     entry: "./src/index.js",
     output: {
-        filename: "js/[hash].js",
+        filename: "js/main.js",
         path: path('public'),
     },
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
+            {
                 test: /.js$/,
                 loader: "babel-loader"
             },
             {
-                test: /\.vue/,
-                loader: 'vue-loader',
-            },
-            {
                 test: /.css$/,
                 use: [
-                    'style-loader',
-                    miniCSS.loader,
-                    {
-                        loader: 'css-loader',
-                    },
+                    'vue-style-loader',
+                    'css-loader',
                 ]
             },
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader',
-                    miniCSS.loader,
-                    {
-                        loader: 'css-loader',
-                    }, {
-                          loader: 'postcss-loader',
-                          options: { config: { path: './postcss.config.js' } }
-                    }, {
-                          loader: 'sass-loader',
-                    },
+                  'vue-style-loader',
+                  'css-loader',
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                    //   data: `$subColor: green;`
+                      data: `@import "./src/style/scss/_variables.scss";`
+                    }
+                  }
                 ]
             },
             {
@@ -63,13 +59,13 @@ const baseConfig = {
     },
     resolve: {
         alias: {
-          vue: 'vue/dist/vue.js'
+          "vue$": 'vue/dist/vue.esm.js'
         }
     },
     plugins: [
-        new miniCSS({
-            filename: "styles/main.css",
-        }),
+        // new miniCSS({
+        //     filename: "styles/main.css",
+        // }),
         new HTML({
             template: "./src/index.html",
             title: "Cool",

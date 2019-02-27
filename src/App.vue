@@ -4,14 +4,16 @@
   </div>
 </template>
 <script>
+  import Layout from "./views/Layout.vue"
+
   export default {
     components: {
-      Layout: () => import("./views/Layout.vue"),
+      Layout
     }
   }
 </script>
 
-<style lang="scss">
+<style>
 #app{
   text-align: center;
 }
@@ -21,10 +23,11 @@
 
 #nav a {
   font-weight: bold;
-  color: $colorMain;
+  color: black;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+  background: black;
 }
 </style>

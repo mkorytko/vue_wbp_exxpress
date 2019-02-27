@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "rimraf public && webpack --mode=development --watch",
+    "webpack": "webpack --mode=development --watch",
+    "build": "rimraf public && webpack --mode=production",
     "devServer": "webpack-dev-server",
     "server": "nodemon ./app.js",
     "allDev": "rimraf public && npm-run-all --parallel webpack server"
@@ -27,16 +28,31 @@
     "mini-css-extract-plugin": "^0.5.0",
     "moment": "^2.24.0",
     "mongodb": "^3.1.13",
+    "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
     "rimraf": "^2.6.3",
-    "style-loader": "^0.23.1",
+    "sass-loader": "^7.1.0",
     "vue-loader": "^15.6.4",
+    "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.7",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.x3",
     "webpack-dev-server": "^3.2.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "node_models",
+      "public/*"
+    ],
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": 3051,
+      "MONGO_URL": "mongodb://localhost/users",
+      "SESSION_SECRET": "20bb7c9c8fa5Fs6d4c73942c5b8144683bb1t1c"
+    },
+    "ext": ".js,.json"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
